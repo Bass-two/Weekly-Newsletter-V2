@@ -635,71 +635,7 @@
 
     <!-- annotation illustration -->
     <div class="illo">
-      <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Street scene with boxes drawn around cars, people, and a stop sign">
-        <!-- sky -->
-        <rect x="20" y="20" width="560" height="280" rx="12" fill="#e0f4ff" stroke="#1a1625" stroke-width="3"/>
-        <!-- road -->
-        <rect x="20" y="220" width="560" height="80" fill="#2a2a3a"/>
-        <!-- road lines -->
-        <line x1="60" y1="260" x2="100" y2="260" stroke="#ffd23f" stroke-width="3"/>
-        <line x1="140" y1="260" x2="180" y2="260" stroke="#ffd23f" stroke-width="3"/>
-        <line x1="220" y1="260" x2="260" y2="260" stroke="#ffd23f" stroke-width="3"/>
-        <line x1="300" y1="260" x2="340" y2="260" stroke="#ffd23f" stroke-width="3"/>
-        <line x1="380" y1="260" x2="420" y2="260" stroke="#ffd23f" stroke-width="3"/>
-        <line x1="460" y1="260" x2="500" y2="260" stroke="#ffd23f" stroke-width="3"/>
-        <!-- sun -->
-        <circle cx="510" cy="60" r="22" fill="#ffd23f" stroke="#1a1625" stroke-width="2"/>
-        <!-- cloud -->
-        <ellipse cx="120" cy="55" rx="30" ry="14" fill="white" stroke="#1a1625" stroke-width="2"/>
-        <ellipse cx="140" cy="50" rx="22" ry="12" fill="white" stroke="#1a1625" stroke-width="2"/>
-
-        <!-- CAR with box -->
-        <g transform="translate(80, 180)">
-          <rect x="-5" y="-5" width="90" height="55" rx="2" fill="none" stroke="#ff4d8d" stroke-width="3" stroke-dasharray="6,3"/>
-          <rect x="5" y="15" width="70" height="25" rx="4" fill="#ee3a5a" stroke="#1a1625" stroke-width="2"/>
-          <rect x="15" y="5" width="50" height="15" rx="3" fill="#ee3a5a" stroke="#1a1625" stroke-width="2"/>
-          <circle cx="18" cy="42" r="7" fill="#1a1625"/>
-          <circle cx="62" cy="42" r="7" fill="#1a1625"/>
-          <text x="-8" y="-10" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#ff4d8d">car ✓</text>
-        </g>
-
-        <!-- PERSON with box -->
-        <g transform="translate(280, 140)">
-          <rect x="-8" y="-8" width="38" height="95" rx="2" fill="none" stroke="#4ecdc4" stroke-width="3" stroke-dasharray="6,3"/>
-          <circle cx="11" cy="8" r="9" fill="#ffd23f" stroke="#1a1625" stroke-width="2"/>
-          <rect x="4" y="20" width="14" height="30" rx="3" fill="#c3a8ff" stroke="#1a1625" stroke-width="2"/>
-          <line x1="7" y1="52" x2="6" y2="78" stroke="#1a1625" stroke-width="3" stroke-linecap="round"/>
-          <line x1="15" y1="52" x2="16" y2="78" stroke="#1a1625" stroke-width="3" stroke-linecap="round"/>
-          <text x="-10" y="-12" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#4ecdc4">person ✓</text>
-        </g>
-
-        <!-- STOP SIGN with box -->
-        <g transform="translate(420, 120)">
-          <rect x="-8" y="-8" width="66" height="110" rx="2" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="6,3"/>
-          <line x1="25" y1="30" x2="25" y2="95" stroke="#1a1625" stroke-width="3"/>
-          <polygon points="25,0 45,6 45,24 25,30 5,24 5,6" fill="#ee3a5a" stroke="#1a1625" stroke-width="2.5"/>
-          <text x="25" y="18" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="7" text-anchor="middle" fill="white">STOP</text>
-          <text x="-10" y="-12" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#c47b1a">stop sign ✓</text>
-        </g>
-
-        <!-- DOG with box -->
-        <g transform="translate(200, 210)">
-          <rect x="-6" y="-6" width="62" height="42" rx="2" fill="none" stroke="#c3a8ff" stroke-width="3" stroke-dasharray="6,3"/>
-          <ellipse cx="28" cy="18" rx="22" ry="12" fill="#ff8c42" stroke="#1a1625" stroke-width="2"/>
-          <circle cx="8" cy="13" r="6" fill="#ff8c42" stroke="#1a1625" stroke-width="2"/>
-          <circle cx="6" cy="12" r="1.5" fill="#1a1625"/>
-          <line x1="5" y1="28" x2="4" y2="32" stroke="#1a1625" stroke-width="2"/>
-          <line x1="18" y1="28" x2="17" y2="32" stroke="#1a1625" stroke-width="2"/>
-          <line x1="38" y1="28" x2="39" y2="32" stroke="#1a1625" stroke-width="2"/>
-          <line x1="48" y1="28" x2="49" y2="32" stroke="#1a1625" stroke-width="2"/>
-          <text x="-8" y="-10" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#c3a8ff">dog ✓</text>
-        </g>
-
-        <!-- cursor -->
-        <g transform="translate(350, 60)">
-          <path d="M0 0 L0 18 L5 14 L9 22 L12 20 L8 13 L14 12 Z" fill="white" stroke="#1a1625" stroke-width="1.5"/>
-        </g>
-      </svg>
+      <img src="street-annotation.jpg" alt="A real street scene with colored labels marking every car, pedestrian, building, and sign — this is what data annotators actually do." style="width: 100%; max-width: 100%; height: auto; border: 3px solid #1a1625; border-radius: 18px; box-shadow: 8px 8px 0 #ff4d8d; display: block;">
       <p class="illo-caption">↑ this is what "teaching the car" literally looks like</p>
     </div>
   </section>
