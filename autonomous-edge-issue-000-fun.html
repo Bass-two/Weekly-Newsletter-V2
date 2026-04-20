@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Autonomous Edge — Issue #000 ✨</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,500&family=Space+Grotesk:wght@400;500;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1625;
+    --paper: #fff8ed;
+    --paper-2: #fdeedb;
+    --hot-pink: #ff4d8d;
+    --sunny: #ffd23f;
+    --sky: #4ecdc4;
+    --grass: #7cc96c;
+    --tangerine: #ff8c42;
+    --lilac: #c3a8ff;
+    --cherry: #ee3a5a;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Space Grotesk', sans-serif;
+    --font-hand: 'Caveat', cursive;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 12%, rgba(255, 210, 63, 0.18) 0, transparent 30%),
+      radial-gradient(circle at 85% 40%, rgba(195, 168, 255, 0.22) 0, transparent 32%),
+      radial-gradient(circle at 20% 75%, rgba(78, 205, 196, 0.18) 0, transparent 30%),
+      radial-gradient(circle at 90% 90%, rgba(255, 77, 141, 0.15) 0, transparent 30%);
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 3.5rem 1.5rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero-sticker {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--sunny);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    padding: 8px 18px;
+    border-radius: 999px;
+    transform: rotate(-2deg);
+    margin-bottom: 1.5rem;
+    box-shadow: 4px 4px 0 var(--hot-pink);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(52px, 10vw, 92px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+
+  .hero-title .squiggle {
+    position: relative;
+    display: inline-block;
+    color: var(--hot-pink);
+  }
+
+  .hero-title .squiggle::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -8px;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10'%3E%3Cpath d='M0,5 Q15,0 30,5 T60,5 T90,5 T120,5' stroke='%23ffd23f' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-size: 60px 10px;
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-hand);
+    font-size: clamp(22px, 3.5vw, 30px);
+    color: var(--ink);
+    opacity: 0.75;
+    margin-bottom: 2rem;
+  }
+
+  .hero-meta {
+    display: inline-flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .chip {
+    background: var(--paper-2);
+    border: 2px solid var(--ink);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .chip.pink { background: var(--hot-pink); color: white; border-color: var(--ink); }
+  .chip.sky { background: var(--sky); color: var(--ink); }
+  .chip.sun { background: var(--sunny); }
+
+  /* ── FLOATING DECOS ── */
+  .floating {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+    50% { transform: translateY(-12px) rotate(var(--r, 0deg)); }
+  }
+
+  .float-1 { top: 2rem; left: 5%; --r: -12deg; animation: bob 4s ease-in-out infinite; }
+  .float-2 { top: 4rem; right: 6%; --r: 18deg; animation: bob 5s ease-in-out infinite 0.5s; }
+  .float-3 { bottom: 1rem; left: 10%; --r: 8deg; animation: bob 4.5s ease-in-out infinite 1s; }
+
+  /* ── SECTION ── */
+  .section { padding: 2.5rem 0; }
+
+  .sec-label {
+    font-family: var(--font-hand);
+    font-size: 26px;
+    color: var(--hot-pink);
+    margin-bottom: 0.25rem;
+    transform: rotate(-1deg);
+    display: inline-block;
+  }
+
+  .sec-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(30px, 5vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+    color: var(--ink);
+  }
+
+  .sec-body p {
+    margin-bottom: 1rem;
+    font-size: 17px;
+  }
+
+  /* ── HELLO CARD ── */
+  .hello-card {
+    background: white;
+    border: 3px solid var(--ink);
+    border-radius: 20px;
+    padding: 1.75rem;
+    box-shadow: 8px 8px 0 var(--sunny);
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .hello-card::before {
+    content: 'hey 👋';
+    position: absolute;
+    top: -18px;
+    left: 20px;
+    background: var(--hot-pink);
+    color: white;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 4px 14px;
+    border-radius: 999px;
+    border: 2px solid var(--ink);
+    letter-spacing: 0.05em;
+  }
+
+  .hello-card p { font-size: 16px; line-height: 1.7; }
+  .hello-card p + p { margin-top: 0.8rem; }
+
+  /* ── BIG QUESTION ── */
+  .big-q {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 24px;
+    padding: 2rem 1.75rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .big-q::before {
+    content: '?';
+    position: absolute;
+    right: -20px;
+    top: -40px;
+    font-family: var(--font-display);
+    font-size: 220px;
+    color: var(--hot-pink);
+    opacity: 0.15;
+    font-weight: 900;
+  }
+
+  .big-q-label {
+    font-family: var(--font-hand);
+    font-size: 24px;
+    color: var(--sunny);
+    margin-bottom: 0.5rem;
+  }
+
+  .big-q-text {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(22px, 3.5vw, 28px);
+    line-height: 1.2;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── ILLUSTRATION WRAP ── */
+  .illo {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .illo svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .illo-caption {
+    font-family: var(--font-hand);
+    font-size: 20px;
+    margin-top: 0.5rem;
+    color: var(--ink);
+    opacity: 0.75;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline-fun {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .t-card {
+    background: white;
+    border: 3px solid var(--ink);
+    border-radius: 18px;
+    padding: 1.25rem 1.5rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .t-card:nth-child(odd) { box-shadow: 6px 6px 0 var(--sky); }
+  .t-card:nth-child(even) { box-shadow: 6px 6px 0 var(--lilac); transform: translateX(10px); }
+  .t-card:nth-child(3n) { box-shadow: 6px 6px 0 var(--sunny); }
+
+  .t-year {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 24px;
+    color: var(--hot-pink);
+    line-height: 1;
+    text-align: center;
+    padding-top: 4px;
+  }
+
+  .t-emoji {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .t-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+  }
+
+  .t-body {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink);
+    opacity: 0.8;
+  }
+
+  /* ── STEPS ── */
+  .steps-wrap {
+    margin: 2rem 0;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+    border-bottom: 2px dashed rgba(26, 22, 37, 0.2);
+    align-items: center;
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-num {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--sunny);
+    border: 3px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 22px;
+  }
+
+  .step:nth-child(2) .step-num { background: var(--hot-pink); color: white; }
+  .step:nth-child(3) .step-num { background: var(--sky); }
+  .step:nth-child(4) .step-num { background: var(--lilac); }
+  .step:nth-child(5) .step-num { background: var(--tangerine); }
+  .step:nth-child(6) .step-num { background: var(--grass); }
+
+  .step-content h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 0.25rem;
+  }
+
+  .step-content p {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  /* ── STATS ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    margin: 2rem 0;
+  }
+
+  .stat {
+    background: white;
+    border: 3px solid var(--ink);
+    border-radius: 16px;
+    padding: 1.25rem 0.75rem;
+    text-align: center;
+  }
+
+  .stat:nth-child(1) { background: var(--sunny); box-shadow: 5px 5px 0 var(--ink); }
+  .stat:nth-child(2) { background: var(--sky); box-shadow: 5px 5px 0 var(--ink); transform: translateY(-6px); }
+  .stat:nth-child(3) { background: var(--hot-pink); color: white; box-shadow: 5px 5px 0 var(--ink); }
+
+  .stat-big {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(28px, 5vw, 40px);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  /* ── QUOTE CARD ── */
+  .quote-card {
+    background: var(--lilac);
+    border: 3px solid var(--ink);
+    border-radius: 20px;
+    padding: 1.75rem;
+    margin: 2rem 0;
+    position: relative;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .quote-mark {
+    font-family: var(--font-display);
+    font-size: 80px;
+    line-height: 0.6;
+    color: var(--ink);
+    position: absolute;
+    top: 20px;
+    left: 18px;
+    font-weight: 900;
+  }
+
+  .quote-text {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.4;
+    padding-left: 2.5rem;
+  }
+
+  /* ── HIGHLIGHT ── */
+  .highlight {
+    background: linear-gradient(180deg, transparent 60%, var(--sunny) 60%);
+    padding: 0 4px;
+    font-weight: 700;
+  }
+
+  /* ── NEXT ISSUE ── */
+  .next-issue {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 24px;
+    padding: 2rem 1.75rem;
+    margin: 2rem 0;
+  }
+
+  .next-issue h3 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--sunny);
+    margin-bottom: 1rem;
+  }
+
+  .next-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .next-list li {
+    padding-left: 2rem;
+    position: relative;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .next-list li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--hot-pink);
+    font-size: 20px;
+    top: -2px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    font-family: var(--font-hand);
+    font-size: 22px;
+    color: var(--ink);
+    opacity: 0.7;
+  }
+
+  footer .tiny {
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat:nth-child(2) { transform: none; }
+    .t-card { grid-template-columns: 1fr; gap: 0.25rem; }
+    .t-card:nth-child(even) { transform: none; }
+    .t-year { text-align: left; }
+    .step { grid-template-columns: 50px 1fr; gap: 0.75rem; }
+    .step-num { width: 42px; height: 42px; font-size: 18px; }
+    .floating { display: none; }
+    .big-q::before { font-size: 150px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- floating decos -->
+  <svg class="floating float-1" width="60" height="60" viewBox="0 0 60 60">
+    <circle cx="30" cy="30" r="22" fill="#ffd23f" stroke="#1a1625" stroke-width="3"/>
+    <circle cx="23" cy="26" r="3" fill="#1a1625"/>
+    <circle cx="37" cy="26" r="3" fill="#1a1625"/>
+    <path d="M22 36 Q30 42 38 36" stroke="#1a1625" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </svg>
+  <svg class="floating float-2" width="70" height="50" viewBox="0 0 70 50">
+    <rect x="8" y="18" width="54" height="22" rx="6" fill="#ff4d8d" stroke="#1a1625" stroke-width="3"/>
+    <rect x="14" y="10" width="42" height="14" rx="4" fill="#ff4d8d" stroke="#1a1625" stroke-width="3"/>
+    <circle cx="20" cy="42" r="5" fill="#1a1625"/>
+    <circle cx="50" cy="42" r="5" fill="#1a1625"/>
+  </svg>
+  <svg class="floating float-3" width="50" height="50" viewBox="0 0 50 50">
+    <path d="M25 5 L30 20 L45 22 L33 32 L37 47 L25 39 L13 47 L17 32 L5 22 L20 20 Z" fill="#4ecdc4" stroke="#1a1625" stroke-width="2.5"/>
+  </svg>
+
+  <div class="hero-sticker">✦ ISSUE #000 · START HERE ✦</div>
+  <h1 class="hero-title">Who taught the <span class="squiggle">robots</span> to drive?</h1>
+  <p class="hero-subtitle">spoiler: it wasn't a robot</p>
+  <div class="hero-meta">
+    <span class="chip pink">the origin story</span>
+    <span class="chip sky">5 min read</span>
+    <span class="chip sun">no tech words ✌️</span>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- HELLO -->
+  <section class="section">
+    <div class="hello-card">
+      <p><strong>Hey you. Yes, you.</strong> Before we talk about robot taxis and billion-dollar tech companies, we need to tell you a secret.</p>
+      <p>Every self-driving car on planet Earth was <em>taught</em> to drive by real people. Not CEOs. Not engineers in hoodies. Regular humans sitting at laptops, drawing boxes around cars and stop signs and people crossing the street — one picture at a time.</p>
+      <p>This is their story. (And honestly? It's wild.)</p>
+    </div>
+  </section>
+
+  <!-- BIG QUESTION -->
+  <section class="section">
+    <div class="big-q">
+      <div class="big-q-label">first, a question</div>
+      <div class="big-q-text">How do you teach a car to know what a pedestrian is when it has never been a child, seen a sidewalk, or watched anyone cross the road?</div>
+    </div>
+    <p style="font-family: var(--font-hand); font-size: 24px; text-align: center; color: var(--hot-pink);">↓ glad you asked ↓</p>
+  </section>
+
+  <!-- ILLUSTRATION: brain vs car -->
+  <section class="section">
+    <div class="illo">
+      <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A kid's brain full of memories vs an empty robot brain">
+        <!-- Human side -->
+        <g transform="translate(60, 30)">
+          <text x="90" y="0" font-family="Fraunces, serif" font-weight="900" font-size="20" text-anchor="middle" fill="#1a1625">YOU (a human)</text>
+          <!-- head -->
+          <circle cx="90" cy="100" r="60" fill="#ffd23f" stroke="#1a1625" stroke-width="3"/>
+          <!-- brain pattern -->
+          <path d="M60 90 Q70 80 80 90 T100 90 T120 90" stroke="#1a1625" stroke-width="2" fill="none"/>
+          <path d="M60 105 Q70 95 80 105 T100 105 T120 105" stroke="#1a1625" stroke-width="2" fill="none"/>
+          <!-- thoughts -->
+          <g font-family="Caveat, cursive" font-size="16" fill="#1a1625">
+            <text x="15" y="40">🚗 cars</text>
+            <text x="140" y="45">🚦 lights</text>
+            <text x="5" y="180">🚶 people</text>
+            <text x="145" y="185">🐕 dogs</text>
+            <text x="50" y="220">years of watching</text>
+            <text x="55" y="245" fill="#ff4d8d" font-weight="700">the world ♥</text>
+          </g>
+          <!-- eyes -->
+          <circle cx="78" cy="115" r="4" fill="#1a1625"/>
+          <circle cx="102" cy="115" r="4" fill="#1a1625"/>
+          <path d="M78 135 Q90 142 102 135" stroke="#1a1625" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <!-- VS -->
+        <text x="300" y="145" font-family="Fraunces, serif" font-weight="900" font-size="36" text-anchor="middle" fill="#ff4d8d">VS</text>
+
+        <!-- Robot side -->
+        <g transform="translate(400, 30)">
+          <text x="90" y="0" font-family="Fraunces, serif" font-weight="900" font-size="20" text-anchor="middle" fill="#1a1625">SELF-DRIVING CAR</text>
+          <!-- robot head -->
+          <rect x="40" y="50" width="100" height="100" rx="12" fill="#c3a8ff" stroke="#1a1625" stroke-width="3"/>
+          <!-- antenna -->
+          <line x1="90" y1="50" x2="90" y2="35" stroke="#1a1625" stroke-width="3"/>
+          <circle cx="90" cy="33" r="5" fill="#ff4d8d" stroke="#1a1625" stroke-width="2"/>
+          <!-- screen eyes -->
+          <rect x="55" y="80" width="25" height="15" rx="3" fill="#1a1625"/>
+          <rect x="100" y="80" width="25" height="15" rx="3" fill="#1a1625"/>
+          <line x1="60" y1="87" x2="75" y2="87" stroke="#ff4d8d" stroke-width="2"/>
+          <line x1="105" y1="87" x2="120" y2="87" stroke="#ff4d8d" stroke-width="2"/>
+          <!-- sad mouth -->
+          <path d="M70 125 Q90 118 110 125" stroke="#1a1625" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- empty thoughts -->
+          <g font-family="Caveat, cursive" font-size="18" fill="#1a1625">
+            <text x="30" y="180" text-anchor="start">...nothing.</text>
+            <text x="20" y="210" fill="#ee3a5a" font-weight="700">totally blank.</text>
+            <text x="45" y="240">zero experience</text>
+          </g>
+        </g>
+      </svg>
+      <p class="illo-caption">you had a childhood. the robot didn't.</p>
+    </div>
+
+    <div class="sec-body">
+      <p>When you learned to cross the road, you didn't read a manual. You watched. You noticed. You copied adults. You fell, maybe got scolded, and figured it out over <em>years</em>.</p>
+      <p>A self-driving car? It wakes up knowing <strong>absolutely nothing</strong>. Not what a car is. Not what a person looks like. Not what "red means stop" means. It has to be taught. Every. Single. Thing.</p>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <div class="quote-card">
+    <div class="quote-mark">"</div>
+    <p class="quote-text">Behind every robot taxi gliding down a street, there are <span class="highlight">millions of pictures</span> that real humans labeled by hand. The AI learned from people. It still does.</p>
+  </div>
+
+  <!-- HOW THEY DO IT -->
+  <section class="section">
+    <div class="sec-label">~ the secret sauce ~</div>
+    <h2 class="sec-title">So how do you teach a car to see?</h2>
+    <p style="margin-bottom: 1rem;">You sit down. You open a picture. And you draw a box around everything that matters. Then you tell the computer what's inside the box. That's it. That's the job.</p>
+    <p style="margin-bottom: 1.5rem;">Do that a few million times across thousands of people, and congrats — you've taught a machine to see.</p>
+
+    <!-- annotation illustration -->
+    <div class="illo">
+      <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Street scene with boxes drawn around cars, people, and a stop sign">
+        <!-- sky -->
+        <rect x="20" y="20" width="560" height="280" rx="12" fill="#e0f4ff" stroke="#1a1625" stroke-width="3"/>
+        <!-- road -->
+        <rect x="20" y="220" width="560" height="80" fill="#2a2a3a"/>
+        <!-- road lines -->
+        <line x1="60" y1="260" x2="100" y2="260" stroke="#ffd23f" stroke-width="3"/>
+        <line x1="140" y1="260" x2="180" y2="260" stroke="#ffd23f" stroke-width="3"/>
+        <line x1="220" y1="260" x2="260" y2="260" stroke="#ffd23f" stroke-width="3"/>
+        <line x1="300" y1="260" x2="340" y2="260" stroke="#ffd23f" stroke-width="3"/>
+        <line x1="380" y1="260" x2="420" y2="260" stroke="#ffd23f" stroke-width="3"/>
+        <line x1="460" y1="260" x2="500" y2="260" stroke="#ffd23f" stroke-width="3"/>
+        <!-- sun -->
+        <circle cx="510" cy="60" r="22" fill="#ffd23f" stroke="#1a1625" stroke-width="2"/>
+        <!-- cloud -->
+        <ellipse cx="120" cy="55" rx="30" ry="14" fill="white" stroke="#1a1625" stroke-width="2"/>
+        <ellipse cx="140" cy="50" rx="22" ry="12" fill="white" stroke="#1a1625" stroke-width="2"/>
+
+        <!-- CAR with box -->
+        <g transform="translate(80, 180)">
+          <rect x="-5" y="-5" width="90" height="55" rx="2" fill="none" stroke="#ff4d8d" stroke-width="3" stroke-dasharray="6,3"/>
+          <rect x="5" y="15" width="70" height="25" rx="4" fill="#ee3a5a" stroke="#1a1625" stroke-width="2"/>
+          <rect x="15" y="5" width="50" height="15" rx="3" fill="#ee3a5a" stroke="#1a1625" stroke-width="2"/>
+          <circle cx="18" cy="42" r="7" fill="#1a1625"/>
+          <circle cx="62" cy="42" r="7" fill="#1a1625"/>
+          <text x="-8" y="-10" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#ff4d8d">car ✓</text>
+        </g>
+
+        <!-- PERSON with box -->
+        <g transform="translate(280, 140)">
+          <rect x="-8" y="-8" width="38" height="95" rx="2" fill="none" stroke="#4ecdc4" stroke-width="3" stroke-dasharray="6,3"/>
+          <circle cx="11" cy="8" r="9" fill="#ffd23f" stroke="#1a1625" stroke-width="2"/>
+          <rect x="4" y="20" width="14" height="30" rx="3" fill="#c3a8ff" stroke="#1a1625" stroke-width="2"/>
+          <line x1="7" y1="52" x2="6" y2="78" stroke="#1a1625" stroke-width="3" stroke-linecap="round"/>
+          <line x1="15" y1="52" x2="16" y2="78" stroke="#1a1625" stroke-width="3" stroke-linecap="round"/>
+          <text x="-10" y="-12" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#4ecdc4">person ✓</text>
+        </g>
+
+        <!-- STOP SIGN with box -->
+        <g transform="translate(420, 120)">
+          <rect x="-8" y="-8" width="66" height="110" rx="2" fill="none" stroke="#ffd23f" stroke-width="3" stroke-dasharray="6,3"/>
+          <line x1="25" y1="30" x2="25" y2="95" stroke="#1a1625" stroke-width="3"/>
+          <polygon points="25,0 45,6 45,24 25,30 5,24 5,6" fill="#ee3a5a" stroke="#1a1625" stroke-width="2.5"/>
+          <text x="25" y="18" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="7" text-anchor="middle" fill="white">STOP</text>
+          <text x="-10" y="-12" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#c47b1a">stop sign ✓</text>
+        </g>
+
+        <!-- DOG with box -->
+        <g transform="translate(200, 210)">
+          <rect x="-6" y="-6" width="62" height="42" rx="2" fill="none" stroke="#c3a8ff" stroke-width="3" stroke-dasharray="6,3"/>
+          <ellipse cx="28" cy="18" rx="22" ry="12" fill="#ff8c42" stroke="#1a1625" stroke-width="2"/>
+          <circle cx="8" cy="13" r="6" fill="#ff8c42" stroke="#1a1625" stroke-width="2"/>
+          <circle cx="6" cy="12" r="1.5" fill="#1a1625"/>
+          <line x1="5" y1="28" x2="4" y2="32" stroke="#1a1625" stroke-width="2"/>
+          <line x1="18" y1="28" x2="17" y2="32" stroke="#1a1625" stroke-width="2"/>
+          <line x1="38" y1="28" x2="39" y2="32" stroke="#1a1625" stroke-width="2"/>
+          <line x1="48" y1="28" x2="49" y2="32" stroke="#1a1625" stroke-width="2"/>
+          <text x="-8" y="-10" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" fill="#c3a8ff">dog ✓</text>
+        </g>
+
+        <!-- cursor -->
+        <g transform="translate(350, 60)">
+          <path d="M0 0 L0 18 L5 14 L9 22 L12 20 L8 13 L14 12 Z" fill="white" stroke="#1a1625" stroke-width="1.5"/>
+        </g>
+      </svg>
+      <p class="illo-caption">↑ this is what "teaching the car" literally looks like</p>
+    </div>
+  </section>
+
+  <!-- THE 6 STEPS -->
+  <section class="section">
+    <div class="sec-label">the 6-step dance</div>
+    <h2 class="sec-title">How a car learns to drive 👇</h2>
+
+    <div class="steps-wrap">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>🎥 Drive around & film everything</h4>
+          <p>Cars with cameras strapped on them roam the streets recording video. One day on the road = mountains of footage.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>📤 Send it to the labeling humans</h4>
+          <p>That footage gets shipped off to teams of people whose job is to watch it, frame by frame.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>✏️ Draw boxes around stuff</h4>
+          <p>Every single thing that matters gets a box drawn around it. Cars, people, bikes, signs, dogs, potholes. Everything.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>🏷️ Label what's in the box</h4>
+          <p>Is that a car or a truck? A biker or a kid? A red light or a yellow one? Every detail counts.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h4>🔍 Double-check everything</h4>
+          <p>Another team reviews the work. Mess up here and the car could mess up on the road. No pressure. 😅</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <h4>🧠 Teach the AI</h4>
+          <p>All those labeled pictures get fed to the AI. It studies them like you'd study for an exam — and then it's ready to drive.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section">
+    <div class="sec-label">the wild history</div>
+    <h2 class="sec-title">From weird dream to real thing — in 5 stops</h2>
+
+    <div class="timeline-fun">
+      <div class="t-card">
+        <div class="t-year">1939<span class="t-emoji">💭</span></div>
+        <div>
+          <div class="t-title">Someone imagines it at a World's Fair</div>
+          <div class="t-body">A car company builds a mini model city and says "one day, cars will drive themselves." Everyone thinks it's sci-fi. (It kind of was.)</div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-year">1986<span class="t-emoji">🚐</span></div>
+        <div>
+          <div class="t-title">A van drives itself — at walking speed</div>
+          <div class="t-body">Researchers build a van with a computer the size of a fridge stuffed in the back. It crawls around a car park. Everyone cheers. Then realizes they have a looooong way to go.</div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-year">2004<span class="t-emoji">🏜️</span></div>
+        <div>
+          <div class="t-title">Every single car fails in a desert race</div>
+          <div class="t-body">The US government offers $1 million to anyone who can build a car that drives itself 240km across the desert. Fifteen teams try. <strong>Zero</strong> finish. The best one makes it 11km. Oof.</div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-year">2005<span class="t-emoji">🏆</span></div>
+        <div>
+          <div class="t-title">A car named Stanley wins the desert</div>
+          <div class="t-body">One year later, a Stanford team's car finishes the whole race in under 7 hours. The impossible just happened. The whole world takes notes.</div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <div class="t-year">NOW<span class="t-emoji">🌍</span></div>
+        <div>
+          <div class="t-title">Hundreds of thousands of people labeling data</div>
+          <div class="t-body">Today, there's a <span class="highlight">global army</span> of people — from Nairobi to Manila to Accra — teaching these cars to see. Most names you'll never hear. None of this works without them.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BY THE NUMBERS -->
+  <section class="section">
+    <div class="sec-label">by the numbers</div>
+    <h2 class="sec-title">The scale is kind of insane 📊</h2>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-big">212km</div>
+        <div class="stat-label">distance Stanley the robot car drove in 2005 — the race that started it all</div>
+      </div>
+      <div class="stat">
+        <div class="stat-big">8.3B</div>
+        <div class="stat-label">miles Tesla's cars have driven while collecting data (yes, billion)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-big">350K+</div>
+        <div class="stat-label">people around the world labeling this data right now</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY IT MATTERS -->
+  <section class="section">
+    <div class="sec-label">real talk</div>
+    <h2 class="sec-title">Why should you care?</h2>
+    <div class="sec-body">
+      <p>Because the world is being rebuilt in the background, and almost nobody's talking about it.</p>
+      <p>When a self-driving car rolls past you someday, it'll feel like magic. It's not. It's <span class="highlight">thousands of hours of quiet human work</span> — people looking at pictures of your streets, your people, your traffic — so the machine knows what to do when it sees the same thing.</p>
+      <p>And here's the thing: a car trained only on American highways has NO idea what to do on a street in Accra or Lagos or Nairobi. It's never seen an okada. It doesn't know what a hand wave from a trotro driver means. For these cars to work <em>anywhere</em>, they need local people teaching them about local roads.</p>
+      <p>That work is happening right now. Maybe by people you know. Maybe by people like you.</p>
+    </div>
+  </section>
+
+  <!-- BIG IDEA -->
+  <div class="quote-card" style="background: var(--sunny);">
+    <div class="quote-mark">✦</div>
+    <p class="quote-text">The people labeling this data are building the foundation millions of future rides will run on. That's not an exaggeration. It just hasn't made the news yet.</p>
+  </div>
+
+  <!-- NEXT ISSUE -->
+  <section class="section">
+    <div class="next-issue">
+      <h3>Coming up in Issue #001 →</h3>
+      <ul class="next-list">
+        <li>700,000 robot taxi rides happen every <em>single week</em> now. What does that actually mean for the people behind the scenes?</li>
+        <li>What happens when a car trained in Phoenix meets the streets of Lagos? (Short answer: chaos. Long answer: next issue.)</li>
+        <li>Tesla has driven 8.3 BILLION miles on autopilot. We break down how — and what it still can't do alone.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>made with ♥ for the curious humans<br>teaching machines how the world works</p>
+  <p class="tiny">© 2026 The Autonomous Edge · Issue #000</p>
+</footer>
+
+</body>
+</html>
