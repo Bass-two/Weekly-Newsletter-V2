@@ -474,6 +474,108 @@
     top: -2px;
   }
 
+  /* ── IN-TEXT CITATIONS ── */
+  .cite {
+    display: inline-block;
+    background: var(--hot-pink);
+    color: white;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    text-decoration: none;
+    vertical-align: super;
+    line-height: 1;
+    margin: 0 2px;
+    border: 1.5px solid var(--ink);
+    transition: transform 0.15s ease;
+  }
+
+  .cite:hover {
+    transform: translateY(-2px);
+    background: var(--cherry);
+  }
+
+  .sources-card {
+    background: white;
+    border: 3px solid var(--ink);
+    border-radius: 20px;
+    padding: 1.75rem;
+    box-shadow: 8px 8px 0 var(--sky);
+    margin: 2rem 0;
+    position: relative;
+  }
+
+  .sources-card::before {
+    content: 'sources 🧾';
+    position: absolute;
+    top: -18px;
+    left: 20px;
+    background: var(--grass);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 4px 14px;
+    border-radius: 999px;
+    border: 2px solid var(--ink);
+    letter-spacing: 0.05em;
+  }
+
+  .sources-intro {
+    font-family: var(--font-hand);
+    font-size: 18px;
+    color: var(--ink);
+    opacity: 0.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .sources-list {
+    list-style: none;
+    counter-reset: src-counter;
+  }
+
+  .sources-list li {
+    counter-increment: src-counter;
+    padding: 0.6rem 0 0.6rem 2.2rem;
+    position: relative;
+    border-bottom: 1px dashed rgba(26, 22, 37, 0.15);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .sources-list li:last-child { border-bottom: none; }
+
+  .sources-list li::before {
+    content: counter(src-counter);
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    width: 24px;
+    height: 24px;
+    background: var(--hot-pink);
+    color: white;
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 11px;
+  }
+
+  .sources-list a {
+    color: var(--hot-pink);
+    text-decoration: none;
+    word-break: break-word;
+    font-size: 12px;
+    border-bottom: 1px dotted var(--hot-pink);
+  }
+
+  .sources-list a:hover { color: var(--cherry); }
+
   /* ── FOOTER ── */
   footer {
     text-align: center;
@@ -701,7 +803,7 @@
         <div class="t-year">1939<span class="t-emoji">💭</span></div>
         <div>
           <div class="t-title">Someone imagines it at a World's Fair</div>
-          <div class="t-body">A car company builds a mini model city and says "one day, cars will drive themselves." Everyone thinks it's sci-fi. (It kind of was.)</div>
+          <div class="t-body">A car company builds a mini model city and says "one day, cars will drive themselves." Everyone thinks it's sci-fi. (It kind of was.)<a href="#src-1" class="cite">1</a></div>
         </div>
       </div>
 
@@ -709,7 +811,7 @@
         <div class="t-year">1986<span class="t-emoji">🚐</span></div>
         <div>
           <div class="t-title">A van drives itself — at walking speed</div>
-          <div class="t-body">Researchers build a van with a computer the size of a fridge stuffed in the back. It crawls around a car park. Everyone cheers. Then realizes they have a looooong way to go.</div>
+          <div class="t-body">Researchers build a van with a computer the size of a fridge stuffed in the back. It crawls around a car park. Everyone cheers. Then realizes they have a looooong way to go.<a href="#src-2" class="cite">2</a></div>
         </div>
       </div>
 
@@ -717,7 +819,7 @@
         <div class="t-year">2004<span class="t-emoji">🏜️</span></div>
         <div>
           <div class="t-title">Every single car fails in a desert race</div>
-          <div class="t-body">The US government offers $1 million to anyone who can build a car that drives itself 240km across the desert. Fifteen teams try. <strong>Zero</strong> finish. The best one makes it 11km. Oof.</div>
+          <div class="t-body">The US government offers $1 million to anyone who can build a car that drives itself 240km across the desert. Fifteen teams try. <strong>Zero</strong> finish. The best one makes it 11km. Oof.<a href="#src-3" class="cite">3</a></div>
         </div>
       </div>
 
@@ -725,7 +827,7 @@
         <div class="t-year">2005<span class="t-emoji">🏆</span></div>
         <div>
           <div class="t-title">A car named Stanley wins the desert</div>
-          <div class="t-body">One year later, a Stanford team's car finishes the whole race in under 7 hours. The impossible just happened. The whole world takes notes.</div>
+          <div class="t-body">One year later, a Stanford team's car finishes the whole race in under 7 hours. The impossible just happened. The whole world takes notes.<a href="#src-4" class="cite">4</a></div>
         </div>
       </div>
 
@@ -733,7 +835,7 @@
         <div class="t-year">NOW<span class="t-emoji">🌍</span></div>
         <div>
           <div class="t-title">Hundreds of thousands of people labeling data</div>
-          <div class="t-body">Today, there's a <span class="highlight">global army</span> of people — from Nairobi to Manila to Accra — teaching these cars to see. Most names you'll never hear. None of this works without them.</div>
+          <div class="t-body">Today, there's a <span class="highlight">global army</span> of people — from Nairobi to Manila to Accra — teaching these cars to see. Most names you'll never hear. None of this works without them.<a href="#src-5" class="cite">5</a></div>
         </div>
       </div>
     </div>
@@ -747,15 +849,15 @@
     <div class="stats">
       <div class="stat">
         <div class="stat-big">212km</div>
-        <div class="stat-label">distance Stanley the robot car drove in 2005 — the race that started it all</div>
+        <div class="stat-label">distance Stanley the robot car drove in 2005 — the race that started it all<a href="#src-4" class="cite">4</a></div>
       </div>
       <div class="stat">
         <div class="stat-big">8.3B</div>
-        <div class="stat-label">miles Tesla's cars have driven while collecting data (yes, billion)</div>
+        <div class="stat-label">miles Tesla's cars have driven while collecting data (yes, billion)<a href="#src-6" class="cite">6</a></div>
       </div>
       <div class="stat">
         <div class="stat-big">350K+</div>
-        <div class="stat-label">people around the world labeling this data right now</div>
+        <div class="stat-label">people around the world labeling this data right now<a href="#src-5" class="cite">5</a></div>
       </div>
     </div>
   </section>
@@ -787,6 +889,39 @@
         <li>What happens when a car trained in Phoenix meets the streets of Lagos? (Short answer: chaos. Long answer: next issue.)</li>
         <li>Tesla has driven 8.3 BILLION miles on autopilot. We break down how — and what it still can't do alone.</li>
       </ul>
+    </div>
+  </section>
+
+  <!-- SOURCES -->
+  <section class="section">
+    <div class="sources-card">
+      <p class="sources-intro">tap any number in the article to check our sources ↓</p>
+      <ol class="sources-list">
+        <li id="src-1">
+          <strong>Futurama at the 1939 New York World's Fair</strong> — Wikipedia.
+          <a href="https://en.wikipedia.org/wiki/Futurama_(New_York_World%27s_Fair)" target="_blank" rel="noopener">en.wikipedia.org/wiki/Futurama_(New_York_World's_Fair)</a>
+        </li>
+        <li id="src-2">
+          <strong>Navlab project</strong> — Carnegie Mellon University Robotics Institute.
+          <a href="https://www.ri.cmu.edu/robot/navlab/" target="_blank" rel="noopener">ri.cmu.edu/robot/navlab</a>
+        </li>
+        <li id="src-3">
+          <strong>The DARPA Grand Challenge: Ten Years Later</strong> — DARPA (official).
+          <a href="https://www.darpa.mil/news/2014/grand-challenge-ten-years-later" target="_blank" rel="noopener">darpa.mil/news/2014/grand-challenge-ten-years-later</a>
+        </li>
+        <li id="src-4">
+          <strong>How a Blue SUV Named Stanley Revolutionized Driverless Car Technology</strong> — Smithsonian Magazine.
+          <a href="https://www.smithsonianmag.com/smithsonian-institution/how-a-blue-suv-named-stanley-revolutionized-driverless-car-technology-180984882/" target="_blank" rel="noopener">smithsonianmag.com/.../how-a-blue-suv-named-stanley...</a>
+        </li>
+        <li id="src-5">
+          <strong>The global data annotation industry</strong> — Scale AI and Appen, the platforms powering most AV annotation work worldwide.
+          <a href="https://scale.com/" target="_blank" rel="noopener">scale.com</a> · <a href="https://appen.com/" target="_blank" rel="noopener">appen.com</a>
+        </li>
+        <li id="src-6">
+          <strong>Tesla FSD Supervised fleet passes 8.4 billion cumulative miles</strong> — Teslarati, March 2026.
+          <a href="https://www.teslarati.com/tesla-fsd-supervised-fleet-passes-8-4-billion-cumulative-miles/" target="_blank" rel="noopener">teslarati.com/tesla-fsd-supervised-fleet-passes-8-4-billion...</a>
+        </li>
+      </ol>
     </div>
   </section>
 
